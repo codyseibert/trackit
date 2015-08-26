@@ -2,6 +2,6 @@
 <input ng-model="category.image" placeholder="image"></input>
 <button ng-click="createCategory()">Create</button>
 
-<div ng-repeat="category in categories">
+<div ng-repeat="category in categories" ng-click="categoryClicked(category)">
   {{category.name}}-{{category.image}}<br>
 </div>

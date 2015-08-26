@@ -1,0 +1,8 @@
+<button ng-click="destroyTask()">Delete Task</button>
+<br>
+<input ng-model="entry.value" placeholder="value"></input>
+<button ng-click="createEntry()">Create</button>
+
+<div ng-repeat="entry in entries">
+  {{entry.value}}-{{entry.date}}
+</div>

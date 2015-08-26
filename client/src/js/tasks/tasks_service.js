@@ -9,22 +9,27 @@ angular.module('trackit.tasks.service', [
     Restangular
   ) {
 
-    var getAll = function() {
-      return Restangular.all('tasks').getList();
+    var getAll = function(categoryId) {
+      return Restangular.all('tasks').getList({categoryId: categoryId});
     };
 
     var getOne = function (id) {
       return Restangular.one('tasks', id).get();
     };
 
-    var search = function (fields) {
-      return Restangular.all('tasks').getList(fields);
+    var create = function (task) {
+      return Restangular.all('tasks').post(task);
+    };
+
+    var destroy = function (taskId) {
+      return Restangular.one('tasks', taskId).remove();
     };
 
     return {
       getAll: getAll,
       getOne: getOne,
-      search: search
+      create: create,
+      destroy: destroy
     };
   }
 ])

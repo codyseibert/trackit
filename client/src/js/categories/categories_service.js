@@ -25,11 +25,17 @@ angular.module('trackit.categories.service', [
       return Restangular.all('categories').post(category);
     };
 
+    var destroy = function (categoryId) {
+      return Restangular.one('categories', categoryId).remove();
+    };
+
+
     return {
       create: create,
       getAll: getAll,
       getOne: getOne,
-      search: search
+      search: search,
+      destroy: destroy
     };
   }
 ])

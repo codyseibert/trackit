@@ -34,7 +34,7 @@ module.exports = (function() {
   };
 
   destroy = function (req, res) {
-    Task.findById(req.params.id).then(function(category) {
+    Category.findById(req.params.id).then(function(category) {
       return category.destroy();
     }).then( function (category) {
       res.status(200);

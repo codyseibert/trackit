@@ -1,2 +1,9 @@
+<button ng-click="destroyCategory()">Delete Category</button>
+<br>
 <input ng-model="task.name" placeholder="name"></input>
 <input ng-model="task.image" placeholder="image"></input>
+<button ng-click="createTask()">Create</button>
+
+<div ng-repeat="task in tasks" ng-click="taskClicked(task)">
+  {{task.name}}-{{task.image}}
+</div>

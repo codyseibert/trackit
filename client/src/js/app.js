@@ -3,7 +3,8 @@ angular.module('trackit', [
   'ui.bootstrap',
   'restangular',
   'trackit.categories.controller',
-  'trackit.tasks.controller'
+  'trackit.tasks.controller',
+  'trackit.entries.controller'
 ])
 .config(function (
   $stateProvider,
@@ -13,21 +14,30 @@ angular.module('trackit', [
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('tasks', {
-      url: '/tasks',
-      views: {
-        'main': {
-          controller: 'TasksCtrl',
-          templateUrl: '/tasks/tasks.html'
-        }
-      }
-    })
     .state('categories', {
       url: '/categories',
       views: {
         'main': {
           controller: 'CategoriesCtrl',
           templateUrl: '/categories/categories.html'
+        }
+      }
+    })
+    .state('categories.tasks', {
+      url: '/:categoryId',
+      views: {
+        'main@': {
+          controller: 'TasksCtrl',
+          templateUrl: '/tasks/tasks.html'
+        }
+      }
+    })
+    .state('categories.tasks.entries', {
+      url: '/tasks/:taskId',
+      views: {
+        'main@': {
+          controller: 'EntriesCtrl',
+          templateUrl: '/entries/entries.html'
         }
       }
     });

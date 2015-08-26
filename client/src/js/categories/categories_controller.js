@@ -3,16 +3,17 @@ angular.module('trackit.categories.controller', [
 ])
 .controller('CategoriesCtrl', [
   '$scope',
+  '$state',
   'categoriesService',
   function (
     $scope,
+    $state,
     categoriesService
   ) {
 
     $scope.category = {};
 
     categoriesService.getAll().then(function(categories) {
-      console.log(categories);
       $scope.categories = categories;
     });
 
@@ -21,10 +22,13 @@ angular.module('trackit.categories.controller', [
         name: $scope.category.name,
         image: $scope.category.image
       }).then(function(category) {
-        console.log(category);
         $scope.category.name = '';
         $scope.category.image = '';
       });
+    };
+
+    $scope.categoryClicked = function (category) {
+      $state.go('categories.tasks', {categoryId: category.id});
     };
 
     return this

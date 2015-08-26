@@ -6,7 +6,7 @@ module.exports = (function() {
   var get, post, put, destroy;
 
   get = function (req, res) {
-    Task.findAll().then(function(tasks) {
+    Task.findAll({where: req.query}).then(function(tasks) {
       res.status(200);
       res.send(tasks);
     });
@@ -27,7 +27,7 @@ module.exports = (function() {
   post = function (req, res) {
     task = Task.create({
       name: req.body.name,
-      category: req.body.category,
+      categoryId: req.body.categoryId,
       image: req.body.image
     }).then(function(task) {
       res.status(200);
