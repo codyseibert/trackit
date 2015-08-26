@@ -1,0 +1,7 @@
+<input ng-model="category.name" placeholder="name"></input>
+<input ng-model="category.image" placeholder="image"></input>
+<button ng-click="createCategory()">Create</button>
+
+<div ng-repeat="category in categories">
+  {{category.name}}-{{category.image}}<br>
+</div>
