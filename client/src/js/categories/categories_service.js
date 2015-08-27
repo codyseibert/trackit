@@ -13,8 +13,8 @@ angular.module('trackit.categories.service', [
       return Restangular.all('categories').getList();
     };
 
-    var getOne = function (id) {
-      return Restangular.one('categories', id).get();
+    var getOne = function (categoryId) {
+      return Restangular.one('categories', categoryId).get();
     };
 
     var search = function (fields) {

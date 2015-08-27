@@ -3,10 +3,17 @@ var Entry = require('../models/entry');
 
 module.exports = (function() {
 
-  var get, post, put, destroy;
+  var index, show, post, put, destroy;
 
-  get = function (req, res) {
+  index = function (req, res) {
     Entry.findAll({where: req.query}).then(function(entries) {
+      res.status(200);
+      res.send(entries);
+    });
+  };
+
+  show = function (req, res) {
+    Entry.findById(req.params.id).then(function(entries) {
       res.status(200);
       res.send(entries);
     });
@@ -43,7 +50,8 @@ module.exports = (function() {
   };
 
   return {
-    get: get,
+    index: index,
+    show: show,
     put: put,
     post: post,
     destroy: destroy

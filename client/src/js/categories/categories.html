@@ -1,7 +1,23 @@
-<input ng-model="category.name" placeholder="name"></input>
-<input ng-model="category.image" placeholder="image"></input>
-<button ng-click="createCategory()">Create</button>
+<div class="title">
+  Categories
+</div>
 
-<div ng-repeat="category in categories" ng-click="categoryClicked(category)">
-  {{category.name}}-{{category.image}}<br>
+<div class="wrapper"
+  ng-repeat="category in categories">
+  <div class="bubble"
+    ng-click="categoryClicked(category)"
+    ng-style="{'background-image': 'url('+category.image+')'}">
+    <div class="label">
+      {{category.name}}
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="bubble add"
+    ng-click="gotoAddCategoryState()">
+    <div class="label">
+      Add New
+    </div>
+  </div>
 </div>

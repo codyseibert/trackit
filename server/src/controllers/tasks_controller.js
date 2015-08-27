@@ -3,12 +3,19 @@ var Task = require('../models/task');
 
 module.exports = (function() {
 
-  var get, post, put, destroy;
+  var index, show, post, put, destroy;
 
-  get = function (req, res) {
+  index = function (req, res) {
     Task.findAll({where: req.query}).then(function(tasks) {
       res.status(200);
       res.send(tasks);
+    });
+  };
+
+  show = function (req, res) {
+    Task.findById(req.params.id).then(function(task) {
+      res.status(200);
+      res.send(task);
     });
   };
 
@@ -46,7 +53,8 @@ module.exports = (function() {
   };
 
   return {
-    get: get,
+    index: index,
+    show: show,
     put: put,
     post: post,
     destroy: destroy

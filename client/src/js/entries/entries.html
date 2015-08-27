@@ -1,8 +1,31 @@
-<button ng-click="destroyTask()">Delete Task</button>
-<br>
-<input ng-model="entry.value" placeholder="value"></input>
-<button ng-click="createEntry()">Create</button>
+<button ng-click="gotoTasks()">Back</button>
 
-<div ng-repeat="entry in entries">
-  {{entry.value}}-{{entry.date}}
+<div class="title">
+  {{task.name}}
 </div>
+
+<div class="wrapper">
+  <div class="bubble"
+    ng-click="gotoAddEntryState()"
+    style="background-image: url('http://www2.psd100.com/ppp/2013/11/0501/Blue-plus-sign-icon-1105204253.png');">
+    <div class="label">
+      Add Entry
+    </div>
+  </div>
+</div>
+<br>
+<div class="wrapper">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Entry</th>
+    </tr>
+    <tr class="entry" ng-repeat="entry in entries" ng-click="editEntry(entry)">
+      <td>{{entry.date | amCalendar}}</td>
+      <td>{{entry.value}}</td>
+    </tr>
+  </table>
+</div>
+<br>
+<button ng-click="edit()">Edit</button>
+<button ng-click="delete()">Delete</button>

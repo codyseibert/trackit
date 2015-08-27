@@ -9,6 +9,10 @@ angular.module('trackit.entries.service', [
     Restangular
   ) {
 
+    var getOne = function(entryId) {
+      return Restangular.one('entries', entryId).get();
+    };
+
     var getAll = function(taskId) {
       return Restangular.all('entries').getList({taskId: taskId});
     };
@@ -22,6 +26,7 @@ angular.module('trackit.entries.service', [
     };
 
     return {
+      getOne: getOne,
       getAll: getAll,
       create: create,
       destroy: destroy

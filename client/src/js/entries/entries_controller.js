@@ -19,11 +19,15 @@ angular.module('trackit.entries.controller', [
     var taskId = $stateParams.taskId;
     $scope.entry = {};
 
+    tasksService.getOne(taskId).then(function(task) {
+      $scope.task = task;
+    });
+
     entriesService.getAll(taskId).then(function(entries) {
       $scope.entries = entries;
     });
 
-    $scope.createEntry = function () {
+    $scope.create = function () {
       entriesService.create({
         value: $scope.entry.value,
         taskId: taskId
@@ -32,7 +36,25 @@ angular.module('trackit.entries.controller', [
       });
     };
 
-    $scope.destroyTask = function () {
+    $scope.gotoTasks = function () {
+      $state.go('categories.tasks', {taskId: taskId});
+    };
+
+    $scope.edit = function () {
+      $state.go('categories.tasks.edit', {taskId: taskId});
+    };
+
+    $scope.editEntry = function (entry) {
+      $state.go('categories.tasks.entries.edit', {entryId: entry.id});
+    };
+
+    $scope.gotoAddEntryState = function () {
+      $state.go('categories.tasks.entries.add', {taskId: taskId});
+    };
+
+    $scope.delete = function () {
+      var yes = confirm('are you sure you want to delete this task?');
+      if (!yes) return;
       tasksService.destroy(taskId).then(function () {
         $state.go('categories.tasks', {categoryId: categoryId});
       });

@@ -1,4 +1,83 @@
 body {
   padding: 0px;
   margin: 0px;
+  text-align: center;
+  background-color: #DDD;
+}
+
+.wrapper {
+  padding: 30px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.bubble {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  background-size: contain;
+  cursor: pointer;
+  background-color: white;
+}
+
+.bubble .label{
+  position: relative;
+  top: 80px;
+  left: 80px;
+  border-radius: 10px;
+  background-color: rgba(200, 255, 200, 0.9);
+  border: 1px solid black;
+  width: 120px;
+  height: 20px;
+  padding: 10px;
+  text-align: center;
+  left: -20px;
+  cursor: pointer;
+}
+
+.add {
+  background-image: url('https://cdn4.iconfinder.com/data/icons/miu/22/editor_pencil_pen_edit_write_-128.png');
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+button {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: blue;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #B4FF9F;
+}
+
+table {
+  width: 300px;
+}
+
+tr {
+}
+
+.entry:hover {
+  background-color: rgba(200, 255, 200, 0.9);
+  cursor: pointer;
+  border: 0px;
+}
+
+td {
+  border: 0px;
+  padding: 10px;
+  font-size: 20px;
 }

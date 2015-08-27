@@ -3,12 +3,19 @@ var Category = require('../models/category');
 
 module.exports = (function() {
 
-  var get, post, put, destroy;
+  var index, post, put, destroy;
 
-  get = function (req, res) {
+  index = function (req, res) {
     Category.findAll().then(function(categories) {
       res.status(200);
       res.send(categories);
+    });
+  };
+
+  show = function (req, res) {
+    Category.findById(req.params.id).then(function(category) {
+      res.status(200);
+      res.send(category);
     });
   };
 
@@ -43,7 +50,8 @@ module.exports = (function() {
   };
 
   return {
-    get: get,
+    index: index,
+    show: show,
     put: put,
     post: post,
     destroy: destroy

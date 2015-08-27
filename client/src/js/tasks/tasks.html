@@ -1,9 +1,29 @@
-<button ng-click="destroyCategory()">Delete Category</button>
-<br>
-<input ng-model="task.name" placeholder="name"></input>
-<input ng-model="task.image" placeholder="image"></input>
-<button ng-click="createTask()">Create</button>
+<button ng-click="gotoCategories()">Back</button>
 
-<div ng-repeat="task in tasks" ng-click="taskClicked(task)">
-  {{task.name}}-{{task.image}}
+<div class="title">
+  {{category.name}}
 </div>
+
+<div class="wrapper"
+  ng-repeat="task in tasks">
+  <div class="bubble"
+    ng-click="taskClicked(task)"
+    ng-style="{'background-image': 'url('+task.image+')'}">
+    <div class="label">
+      {{task.name}}
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="bubble add"
+    ng-click="gotoAddTaskState()">
+    <div class="label">
+      Add New
+    </div>
+  </div>
+</div>
+
+<br>
+<button ng-click="edit()">Edit</button>
+<button ng-click="destroyCategory()">Delete</button>

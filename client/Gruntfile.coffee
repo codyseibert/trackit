@@ -19,6 +19,9 @@ module.exports = (grunt) ->
       css:
         src: ['src/css/**/*.css'],
         dest: 'dist/css/app.css'
+      js:
+        src: ['tmp/bower.js', 'src/js/**/*.js', 'tmp/templates.js']
+        dest: 'dist/js/app.js'
 
     bower_concat:
       dist:
@@ -29,7 +32,7 @@ module.exports = (grunt) ->
         options:
           mangle: false
         files:
-          'dist/js/app.js': ['tmp/bower.js', 'src/js/**/*.js', 'tmp/templates.js']
+          'dist/js/app.js': 'dist/js/app.js'
 
     copy:
       images:
@@ -63,7 +66,7 @@ module.exports = (grunt) ->
           'src/**/*.html'
         ]
         tasks: [
-          'dist'
+          'build'
         ]
         options:
           livereload: LIVERELOAD_PORT
@@ -81,18 +84,23 @@ module.exports = (grunt) ->
           middleware: (connect) ->
             [connect().use serveStatic 'dist']
 
-  grunt.registerTask 'dist', 'builds bubblr', [
+  grunt.registerTask 'build', 'builds trackit', [
     'clean'
     'copy:images'
     'concat:css'
     'bower_concat'
     'ngtemplates'
-    'uglify'
+    'concat:js'
     'copy:index'
   ]
 
+  grunt.registerTask 'dist', 'distributes trackit', [
+    'build'
+    'uglify'
+  ]
+
   grunt.registerTask 'default', 'builds, connect, and starts watch', [
-    'dist'
+    'build'
     'connect'
     'watch'
   ]

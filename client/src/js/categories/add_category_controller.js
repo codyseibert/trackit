@@ -1,7 +1,7 @@
-angular.module('trackit.categories.controller', [
+angular.module('trackit.categories.add_category_controller', [
   'trackit.categories.service'
 ])
-.controller('CategoriesCtrl', [
+.controller('AddCategoryCtrl', [
   '$scope',
   '$state',
   'categoriesService',
@@ -11,28 +11,25 @@ angular.module('trackit.categories.controller', [
     categoriesService
   ) {
 
-    $scope.category = {};
-
-    categoriesService.getAll().then(function(categories) {
-      $scope.categories = categories;
-    });
+    $scope.category = {
+      name: '',
+      image: ''
+    };
 
     $scope.createCategory = function () {
+      if ($scope.category.name === '') {
+        alert('you must enter a category name');
+        return;
+      }
+
       categoriesService.create({
         name: $scope.category.name,
         image: $scope.category.image
       }).then(function(category) {
         $scope.category.name = '';
         $scope.category.image = '';
+        $state.go('categories');
       });
-    };
-
-    $scope.categoryClicked = function (category) {
-      $state.go('categories.tasks', {categoryId: category.id});
-    };
-
-    $scope.gotoAddCategoryState = function () {
-      $state.go('categories.add');
     };
 
     return this
